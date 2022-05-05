@@ -5,6 +5,7 @@ profundo = float(input())
 #calcula los datos introducidos
 volumen = alto * ancho * profundo
 coste = volumen * 5
+
 #imprime datos calculados
 print(volumen)
 print(coste)
