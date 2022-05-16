@@ -1,11 +1,5 @@
 #inserte el numero de paquetes a calcular
-totalCost = 0
-numPack = int(input())
-for i in range(numPack):
-  #Introducir datos
-  alto = float(input())
-  ancho = float(input())
-  profundo = float(input())
+def calcularCosto(alto, ancho, profundo):
   #calcula los datos introducidos
   volumen = alto * ancho * profundo
   coste = volumen * 5
@@ -15,9 +9,17 @@ for i in range(numPack):
   #Verifica si el coste es mayor a 10k y le agrega el IVA
   if coste > 10000:
     coste = coste + (coste * 0.19)
-  #imprime datos calculados
-  totalCost = totalCost + coste
-  print(volumen)
-  print(coste)
+  return coste
 
-print(totalCost)
+def costoTotal(numPack, discount):
+  totalCost = 0
+  for i in range (numPack):
+    alto = float(input())
+    ancho = float(input())
+    profundo = float(input())
+    coste = calcularCosto(alto, ancho, profundo) 
+    totalCost = coste + totalCost
+
+  priceDisc = totalCost * (discount / 100)
+  totalCost = totalCost - priceDisc
+  return totalCost
