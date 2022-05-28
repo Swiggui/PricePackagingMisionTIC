@@ -1,3 +1,4 @@
+import json
 #inserte el numero de paquetes a calcular
 def calcularCosto(alto, ancho, profundo):
   #calcula los datos introducidos
@@ -11,15 +12,33 @@ def calcularCosto(alto, ancho, profundo):
     coste = coste + (coste * 0.19)
   return coste
 
-def costoTotal(numPack, discount):
+def costoTotal(listaPaquetes, discount):
   totalCost = 0
-  for i in range (numPack):
-    alto = float(input())
-    ancho = float(input())
-    profundo = float(input())
+  for counter, values in enumerate(listaPaquetes):
+    alto = values["ALTO"]
+    ancho = values["ANCHO"]
+    profundo = values["PROFUNDO"]
     coste = calcularCosto(alto, ancho, profundo) 
     totalCost = coste + totalCost
 
   priceDisc = totalCost * (discount / 100)
   totalCost = totalCost - priceDisc
   return totalCost
+def import_json():
+  with open('paquetes.json') as file:
+    empresa = json.load(file)
+  return empresa
+empresa = import_json()
+paquetes = [
+  {
+    'ALTO': 20,
+    'ANCHO': 10,
+    'PROFUNDO': 5
+  },
+  {
+    'ALTO': 7,
+    'ANCHO': 10,
+    'PROFUNDO': 5
+  },
+]
+print (costoTotal(paquetes, 15))
